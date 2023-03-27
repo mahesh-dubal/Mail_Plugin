@@ -13,7 +13,7 @@
  * @package           Post_Details_Via_Mail
  *
  * @wordpress-plugin
- * Plugin Name:       Daily Post Details via Mail
+ * Plugin Name:       Daily Post Details sending
  * Plugin URI:        https://mahesh-d.wisdmlabs.net
  * Description:       This is a description of the plugin.
  * Version:           1.0.0
@@ -62,7 +62,7 @@ register_deactivation_hook( __FILE__, 'deactivate_post_details_via_mail' );
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-post-details-via-mail.php';
+require_ plugin_dir_path( __FILE__ ) . 'includes/class-post-details-via-mail.php';
 
 /**
  * Begins execution of the plugin.
