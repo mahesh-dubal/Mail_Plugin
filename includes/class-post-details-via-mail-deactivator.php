@@ -20,7 +20,8 @@
  * @subpackage Post_Details_Via_Mail/includes
  * @author     Mahesh Dubal <mahesh.dubal@wisdmlabs.com>
  */
-class Post_Details_Via_Mail_Deactivator {
+class Post_Details_Via_Mail_Deactivator
+{
 
 	/**
 	 * Short Description. (use period)
@@ -29,8 +30,8 @@ class Post_Details_Via_Mail_Deactivator {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function deactivate() {
-
+	public static function deactivate()
+	{
+		wp_clear_scheduled_hook('my_daily_event');
 	}
-
 }
