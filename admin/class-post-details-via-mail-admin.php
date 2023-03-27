@@ -114,21 +114,21 @@ class Post_Details_Via_Mail_Admin
 	//To send daily post details
 	public function send_daily_post_details()
 	{
-		
+
 		$to = get_option('admin_email');
 		$subject = 'Daily Post Details';
-		$post_details = get_daily_post_details();
+		$post_details = "m";//get_daily_post_details();
 		$message = '';
 
-		foreach ($post_details as $post_data) {
-			$message .= 'Post Title: ' . $post_data['post_title'] . "\n";
-			$message .= 'Post URL: ' . $post_data['post_url'] . "\n";
-			$message .= 'Meta Title: ' . $post_data['meta_title'] . "\n";
-			$message .= 'Meta Description: ' . $post_data['meta_description'] . "\n";
-			$message .= 'Meta Keywords: ' . $post_data['meta_keywords'] . "\n";
-			$message .= 'Page Speed Score: ' . $post_data['page_speed'] . " seconds \n";
-			$message .= "\n";
-		}
+		// foreach ($post_details as $post_data) {
+		// 	$message .= 'Post Title: ' . $post_data['post_title'] . "\n";
+		// 	$message .= 'Post URL: ' . $post_data['post_url'] . "\n";
+		// 	$message .= 'Meta Title: ' . $post_data['meta_title'] . "\n";
+		// 	$message .= 'Meta Description: ' . $post_data['meta_description'] . "\n";
+		// 	$message .= 'Meta Keywords: ' . $post_data['meta_keywords'] . "\n";
+		// 	$message .= 'Page Speed Score: ' . $post_data['page_speed'] . " seconds \n";
+		// 	$message .= "\n";
+		// }
 		$headers = array(
 			'From: mahesh.dubal@wisdmlabs.com',
 		);
@@ -137,27 +137,27 @@ class Post_Details_Via_Mail_Admin
 	}
 
 	//To get google page speed score
-function get_page_speed_score($url)
-{
+	function get_page_speed_score($url)
+	{
 
-	$api_key = "416ca0ef-63e4-4caa-a047-ead672ecc874"; // Google Cloud Platform API key
-	$result_url = "http://www.webpagetest.org/runtest.php?url=" . $url . "&runs=1&f=xml&k=" . $api_key;
-	$run_result = simplexml_load_file($result_url);
-	$test_id = $run_result->data->testId;
+		$api_key = "416ca0ef-63e4-4caa-a047-ead672ecc874"; // Google Cloud Platform API key
+		$result_url = "http://www.webpagetest.org/runtest.php?url=" . $url . "&runs=1&f=xml&k=" . $api_key;
+		$run_result = simplexml_load_file($result_url);
+		$test_id = $run_result->data->testId;
 
-	$status_code = 100;
+		$status_code = 100;
 
-	while ($status_code != 200) {
-	    sleep(10);
-	    $xml_result = "http://www.webpagetest.org/xmlResult/" . $test_id . "/";
-	    $result = simplexml_load_file($xml_result);
-	    $status_code = $result->statusCode;
-	    $page_speed_score = (float) ($result->data->median->firstView->loadTime) / 1000;
+		while ($status_code != 200) {
+			sleep(10);
+			$xml_result = "http://www.webpagetest.org/xmlResult/" . $test_id . "/";
+			$result = simplexml_load_file($xml_result);
+			$status_code = $result->statusCode;
+			$page_speed_score = (float) ($result->data->median->firstView->loadTime) / 1000;
+		}
+
+
+		return $page_speed_score;
 	}
-
-	
-	return $page_speed_score;
-}
 
 
 	//To get details of all posts published on a day
@@ -200,7 +200,7 @@ function get_page_speed_score($url)
 				'meta_title' => $meta_title_of_post,
 				'meta_description' => $meta_description,
 				'meta_keywords' => $meta_keywords,
-				'page_speed' => get_page_speed_score(get_permalink($post->ID)),
+				'page_speed' => 1,//get_page_speed_score(get_permalink($post->ID)),
 			);
 			array_push($post_details, $post_data);
 		}
