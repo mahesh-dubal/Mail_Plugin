@@ -157,6 +157,13 @@ class Post_Details_Via_Mail {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 	
+		//Schedule register when plugin is installed
+		$this->loader->add_action( 'my_daily_event', $plugin_admin, 'send_daily_post_details' );
+
+
+		//Scheduling cron for every minute for demo 
+		$this->loader->add_filter('cron_schedules', $plugin_admin, 'custom_cron_schedules');
+
 	}
 
 	/**
@@ -173,6 +180,7 @@ class Post_Details_Via_Mail {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+		
 	}
 
 	/**
