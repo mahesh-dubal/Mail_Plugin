@@ -32,7 +32,7 @@ class Post_Details_Via_Mail_Activator {
 	public static function activate() {
 
 		if (!wp_next_scheduled('my_daily_event')) {
-			wp_schedule_event(time(), '1minute', 'my_daily_event');
+			wp_schedule_event(strtotime('23:59'), 'daily', 'my_daily_event');
 		  }
 		
 	}
