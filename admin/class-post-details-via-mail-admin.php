@@ -193,4 +193,4 @@ class Post_Details_Via_Mail_Admin
 	}
 
 
-	
+}	
