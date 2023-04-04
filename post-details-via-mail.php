@@ -62,7 +62,7 @@ register_deactivation_hook( __FILE__, 'deactivate_post_details_via_mail' );
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require_ plugin_dir_path( __FILE__ ) . 'includes/class-post-details-via-mail.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-post-details-via-mail.php';
 
 /**
  * Begins execution of the plugin.
